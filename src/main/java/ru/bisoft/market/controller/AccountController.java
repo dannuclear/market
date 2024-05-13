@@ -1,5 +1,6 @@
 package ru.bisoft.market.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,11 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import ru.bisoft.market.dto.AccountDTO;
+import ru.tinkoff.piapi.contract.v1.MoneyValue;
 import ru.tinkoff.piapi.core.InvestApi;
+import ru.tinkoff.piapi.core.models.Portfolio;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
@@ -27,7 +31,7 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<Page<AccountDTO>> findAll() {
-        List<AccountDTO> accounts = investApi.getSandboxService().getAccounts()
+        List<AccountDTO> accounts = investApi.getUserService().getAccounts()
                 .thenApply(list -> list.stream().map(AccountDTO::fromProto).toList()).join();
         Page<AccountDTO> page = new PageImpl<>(accounts, Pageable.ofSize(10), accounts.size());
         return ResponseEntity.ok(page);
@@ -47,6 +51,19 @@ public class AccountController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> delete(@PathVariable UUID id) {
         investApi.getSandboxService().closeAccountSync(id.toString());
+        return ResponseEntity.ok("success");
+    }
+
+    @GetMapping("{id}/portfolio")
+    public ResponseEntity<Portfolio> getMarginAttributes(@PathVariable UUID id) {
+        Portfolio portfolio = investApi.getOperationsService().getPortfolioSync(id.toString());
+        return ResponseEntity.ok(portfolio);
+    }
+
+    @PostMapping("{id}/payIn")
+    public ResponseEntity<String> payIn(@PathVariable UUID id, @RequestParam BigDecimal value) {
+        MoneyValue moneyValue = MoneyValue.newBuilder().setCurrency("rub").setUnits(value.intValue()).build();
+        investApi.getSandboxService().payIn(id.toString(), moneyValue);
         return ResponseEntity.ok("success");
     }
 }

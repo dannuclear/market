@@ -12,7 +12,8 @@ function AccountForm({
     formRef = ref => ref
 }) {
     const { reset, watch, setValue, formState: { errors }, ...formContext} = useForm({
-        defaultValues: account && {
+        defaultValues: {
+            name: "contest2024:dannuclear/market:1",
             ...account
         }
     })

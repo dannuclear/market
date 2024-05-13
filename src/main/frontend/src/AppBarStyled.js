@@ -19,43 +19,43 @@ const items = [
         icon: 'fa-duotone fa-children',
         navigate: 'accounts'
     },
-    {
-        name: 'Выплаты',
-        icon: 'fa-solid fa-money-bill-transfer',
-        items: [
-            {
-                name: 'Расчет начислений',
-                icon: 'fa-regular fa-calculator',
-                navigate: 'calculations'
-            },
-            {
-                name: 'Ведомости',
-                icon: 'fa-light fa-clipboard-list',
-                navigate: 'payments'
-            }
-        ]
-    },
-    {
-        name: 'Справочники',
-        icon: 'fa-regular fa-layer-group',
-        items: [
-            {
-                name: 'Виды стипендий',
-                icon: 'fa-regular fa-coin',
-                navigate: 'grantTypes'
-            },
-            {
-                name: 'Группы',
-                icon: 'fa-regular fa-user-group',
-                navigate: 'studyGroups'
-            },
-            {
-                name: 'Платежные агенты',
-                icon: 'fa-regular fa-building-columns',
-                navigate: 'paymentAgents'
-            },
-        ]
-    },
+    // {
+    //     name: 'Выплаты',
+    //     icon: 'fa-solid fa-money-bill-transfer',
+    //     items: [
+    //         {
+    //             name: 'Расчет начислений',
+    //             icon: 'fa-regular fa-calculator',
+    //             navigate: 'calculations'
+    //         },
+    //         {
+    //             name: 'Ведомости',
+    //             icon: 'fa-light fa-clipboard-list',
+    //             navigate: 'payments'
+    //         }
+    //     ]
+    // },
+    // {
+    //     name: 'Справочники',
+    //     icon: 'fa-regular fa-layer-group',
+    //     items: [
+    //         {
+    //             name: 'Виды стипендий',
+    //             icon: 'fa-regular fa-coin',
+    //             navigate: 'grantTypes'
+    //         },
+    //         {
+    //             name: 'Группы',
+    //             icon: 'fa-regular fa-user-group',
+    //             navigate: 'studyGroups'
+    //         },
+    //         {
+    //             name: 'Платежные агенты',
+    //             icon: 'fa-regular fa-building-columns',
+    //             navigate: 'paymentAgents'
+    //         },
+    //     ]
+    // },
 ]
 
 const AppBarStyled = () => {

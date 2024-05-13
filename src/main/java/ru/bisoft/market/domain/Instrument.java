@@ -1,4 +1,4 @@
-package ru.bisoft.market.mvc.domain;
+package ru.bisoft.market.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
